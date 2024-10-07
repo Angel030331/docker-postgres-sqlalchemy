@@ -10,3 +10,10 @@ conn.execute(query)
 conn.commit()
 
 print('done')
+
+# use the SQLAlchemy library to access our Postgres database with Python
+
+# test services
+# docker-compose build && docker-compose up -d
+    # Now you can connect database with software like PGAdmin to visualize it. 
+    # Database is up at http://localhost:5432 and you can connect with credentials sets in your docker-compose.yml file.

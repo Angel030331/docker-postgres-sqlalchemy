@@ -26,3 +26,12 @@ Then :
 
 `docker-compose up api` # need to add a healthcheck
 
+## scripts annotation
+* init.sql: initialize database
+* docker-compose.yml: declare the Postgres database
+    * declare the database as a service based on official postgres docker image
+
+## Acknowledgement
+This repo is cloned from https://github.com/Bessouat40/docker-postgres-sqlalchemy
+
+The aim of this repository is to expand the learning and applications based on the tutorial.
