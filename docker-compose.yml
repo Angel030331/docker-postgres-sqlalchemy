@@ -27,6 +27,7 @@ services:
     # platform: linux/amd64,linux/arm64
     depends_on:
       - db
+      # the api service depends on the db service
     build:
       context: ./
       dockerfile: ./Dockerfile
