@@ -1,8 +1,9 @@
 version: '3'
+# The file starts by specifying the version of Docker Compose being used, which is version 3 in this case
 
 # declare our database as a service based on official postgres docker image
 services:
-  db:
+  db: # the first service is db service: provided by the official postgres image
     image: postgres
     restart: unless-stopped
     container_name: db
@@ -14,11 +15,16 @@ services:
       - '5432:5432'
     volumes:
       - ./db:/var/lib/postgresql/data
+      # Mounts the host directory ./db to the /var/lib/postgresql/data directory within the container. 
+      # This is used to persist the PostgreSQL database data files
       - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-
-  api:
+      # Mounts the host file init.sql to /docker-entrypoint-initdb.d/create_tables.sql in the container. 
+      # This file is used by PostgreSQL to initialize the database schema when the container starts.
+  api: # the second service is api service: provided by our custom image
   # declare our api as a service based on our custom image
-    platform: linux/amd64
+    platform: linux/amd64 # Specifies the platform as Linux on AMD64 architecture
+    # alt=>multiple platforms: platform: linux/amd64, linux/arm64
+    # platform: linux/amd64,linux/arm64
     depends_on:
       - db
     build:
@@ -29,5 +35,5 @@ volumes:
 # Volumes are memory of our docker containers. 
 # If we want to keep our datas when we restart them, it’s necessary to use volumes.
   db:
-    driver: local
+    driver: local # defines a named volume db with a local driver
     # declare volumes at the end of the file and store them in our device
